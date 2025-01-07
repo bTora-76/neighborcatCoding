@@ -27,7 +27,7 @@ int last;
 int f(int node, vector<vector<int>> &v){
     //มองก่อนเดิน
     //base case
-    if (node == last) return 0;
+    if (node == last) return 0; // ถึงจุดหมาย
     
 
     // loop ในแต่ละรอบ
