@@ -5,6 +5,7 @@
 using namespace std;
 
 
+
 int n;
 
 int f(int n, vector <int> &v){
@@ -22,11 +23,19 @@ int f(int n, vector <int> &v){
 
 int main(){
 
-
-
   cin >> n;
-  // vector<int> v(n + 1, -1);
-  // cout << f(n,v);
+
+  vector <int> dp(3); // account for 0
+  dp[0] = 0;
+  dp[1] = 1;
+
+  for (int i = 2; i <= n; i ++){
+    dp[i % 3] = dp[(i-1) % 3] + dp[(i-2) % 3]; // optimize memory
+  }
+
+  cout << dp[n%3];
+
+  
 
   return 0;
 }
