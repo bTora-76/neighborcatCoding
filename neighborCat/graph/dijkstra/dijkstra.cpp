@@ -38,7 +38,7 @@ int main(){
 
     for (it = adj[v].begin(); it != adj[v].end(); it++){
       // if less than, add
-      if (dst[it->first] > w + it->second){
+      if ( w + it->second < dst[it->first]){
         pq.push({w + it->second, it->first});
         dst[it->first] = w + it->second;
       }
