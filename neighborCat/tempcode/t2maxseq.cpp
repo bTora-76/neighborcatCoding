@@ -2,8 +2,19 @@
 #include <vector>
 using namespace std;
 
+int getSum(vector <int> &seq){
+    int sum = 0;
+    for (int i = 0; i < seq.size(); i++){
+        sum += seq[i];
+    }
+    return sum;
+}
+
+
+
 int main(){
     int n;
+    bool flag = false;
     cin >> n;
 
     int arr[n];
@@ -13,6 +24,7 @@ int main(){
     }
 
     //process
+
     vector <int> seq;
 
     int maxSum = 0;
@@ -35,41 +47,46 @@ int main(){
     
     
     for(int i = 0; i < n; i++){
-        if (arr[i] == 0){
-            for (int j = 0; j < seq.size(); j++){
-                cout << seq[j] << " ";
-               }
-               cout << '\n';
+        if (arr[i] == 0 || i == n - 1){
+            // for (int j = 0; j < seq.size(); j++){
+            //     cout << seq[j] << " ";
+            //    }
+            //    cout << '\n';
 
             //find sum of seq
             sum = 0; // use sum to track and compare if is equal to maxSum
-            for (int i = 0; i < seq.size(); i++){
-                sum += seq[i];
-            }
+            
 
             // if equal to maxsum
-            if (sum == maxSum){
-               for (int j = 0; j < seq.size(); j++){
-                cout << seq[j] << " ";
-               }
-               cout << '\n';
-            } 
-            else {
-                // เขียนว่า ถ้ายังไม่เท่าให้ลองตัดตัวขวาสุดออกแล้วบวกใหม่
-            }       
+            sum = getSum(seq);
+
+
+            // จะตัดทอนลงไปเรื่อยๆเพื่อดูว่า max ไหม ถ้าไม่ก็จะไม่มีตัวเหลืออยู่ใน arr
+            while (sum != maxSum && !seq.empty()){
+                seq.pop_back();
+                sum = getSum(seq);
+            }
+
+            if (!seq.empty()){
+                flag = true;
+                for (int j = 0; j < seq.size(); j++)
+                {
+                    cout << seq[j] << " ";
+                }
+                break;
+            }
+            
+            //check for empty sequence
+        }    
+        
+        if (arr[i] != 0){
+            seq.push_back(arr[i]);
         }
-
-        
-        seq.push_back(arr[i]);
-
-        
-
     }
-
-
-
-    
-
-    cout << maxSum;
+    if (flag == false ){
+        cout << "Empty sequence";
+        return 0;
+    }
+    cout << '\n' << maxSum;
 
 }
