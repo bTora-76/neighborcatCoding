@@ -11,7 +11,7 @@ int main() {
   cin >> n;
 
   priority_queue<pair<int,int>, vector <pair<int,int>>, greater<pair<int,int>>> inputs; // data of input commands {s, h} (this is array)
-  priority_queue<pair<int,int>, vector <pair<int,int>>, greater<pair<int,int>>> tempInputs;
+  priority_queue<pair<int,int>> tempInputs;
 
 
   // get input + findmax height
@@ -30,6 +30,10 @@ int main() {
     maxHeight = max(maxHeight, tempInputs.top().second);
     tempInputs.pop();
   }
+  // loop to check every pair
+
+  // ทำแบบนี้ไม่ต้องใช้ condition yuanๆ
+
 
   
 
@@ -63,11 +67,11 @@ int main() {
         }
 
         // left of mid
-        else if  (j == height - 1 - layer + (start - 1) && ans[i][j] != 'x'){
+        else if  (j == height - 1 - layer + (start - 1) && ans[i][j] != 'X'){
           ans[i][j] = '/';
         }
         // right of mid
-        else if (j == height + layer + (start - 1) && ans[i][j] != 'x'){
+        else if (j == height + layer + (start - 1) && ans[i][j] != 'X'){
           ans[i][j] = '\\';
         }
 
