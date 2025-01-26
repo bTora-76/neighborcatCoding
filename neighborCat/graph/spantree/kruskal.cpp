@@ -17,7 +17,7 @@ int f(int n,  vector<int> & v){
 int main(){
   vector<pair<int, pair<int, int>>> inputs;
 
-
+  
 
   int n, e, cost;
   cin >> n >> e;
@@ -28,6 +28,8 @@ int main(){
     cin >> a >> b >> w;
     inputs.push_back({w, {a, b}});
   }
+
+  sort(inputs.begin(), inputs.end());
 
   vector<int> parent (n);
 
@@ -45,7 +47,7 @@ int main(){
     int B = f(b, parent);
 
     if (A!=B){
-      parent[A] = B;
+      parent[A] = B; // เอา root มาเชื่อมกัน
       cost += w;
     }
   }

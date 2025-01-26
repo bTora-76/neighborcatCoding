@@ -7,6 +7,7 @@ using namespace std;
 
 int n;
 
+
 int f(int n, vector <int> &v){
   if(n <= 1)
     return n;
