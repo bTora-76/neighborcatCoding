@@ -28,7 +28,7 @@ int main(){
 
 
   while (i < n1 && j < n2){
-    if (arr1[i] > arr2[j]){
+    if (arr1[i] < arr2[j]){
       cout << arr1[i] << " ";
       ++i;
     }
@@ -38,6 +38,8 @@ int main(){
       ++j;
     }
   }
+
+  // เพื่อเหลือ
 
   while (i < n1){
     cout << arr1[i] << " ";
@@ -49,7 +51,9 @@ int main(){
     j++;
   }
 
+  return 0;
+
+}
   
 
-    return 0;
-}
+
