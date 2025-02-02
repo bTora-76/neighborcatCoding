@@ -5,25 +5,27 @@ using namespace std;
 
 int main(){
 
-    int n, goal;
+    long long n, goal;
     cin >> n >> goal;
 
-    vector <pair<int,int>> inputs(n); // {value, og index}
+    vector <pair<long long,long long>> inputs(n); // {value, og index}
 
-    for (int i = 0; i < n; i++){
+    for (long long i = 0; i < n; i++){
         cin >> inputs[i].first;
         inputs[i].second = i+1;
     }
 
     sort(inputs.begin(), inputs.end());
 
-    int L = 0;
-    int R = n-1;
-    int mid = L + ((R-L)/2);
-    int sum;
+    long long L = 0;
+    long long R = n-1;
+    long long mid = L + ((R-L)/2);
+    long long sum;
 
-    while (L != mid && R != mid && L < R){
+    while (L < mid && R > mid){
         sum = inputs[L].first + inputs[mid].first + inputs[R].first;
+
+        cout << L << " " << mid << " " << R << " Sum: " << sum << '\n';
 
         if (sum == goal){
             cout << inputs[L].second << " " << inputs[mid].second << " " <<  inputs[R].second;
