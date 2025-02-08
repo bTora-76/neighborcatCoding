@@ -28,29 +28,14 @@ int main(){
     cin >> w;
     vector <string> goals(w, "");
 
-    for (int i = 0; i < w;i++){
+    for (int i = 0; i < w; i++){
         cin >> goals[i];
     }
 
 
     // process
 
-    for (int i = 0; i < w; i++){
-        // loop to find starting character
-        for (int j = 0; j < maxRow; j++){
-            for (int k = 0; k < maxCol; k++){
-                // check starting char
-                if(inputs[j][k] == goals[w][0]){
-                    f()
-                }
-            }
-        }
-    }
-
-
-
-
-
+    string word = "Compute";
 
     return 0;
 }
