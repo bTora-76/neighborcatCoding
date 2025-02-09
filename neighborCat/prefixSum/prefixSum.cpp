@@ -29,7 +29,7 @@ int main(){
 
   for (int i = 0; i < k; i++){
     cin >> a >> b;
-    cout << arr[b] - arr[a - 1];
+    cout << arr[b] - arr[a - 1] << '\n';
   }
   
 }
