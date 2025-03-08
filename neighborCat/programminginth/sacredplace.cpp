@@ -3,6 +3,11 @@
 #include <algorithm>
 using namespace std;
 
+// bool comp(pair<int, pair<int, int>> a, pair<int, pair<int, int>> b){
+//   // make sure to process highest weights first
+//   return a.first > b.first;
+// }
+
 // get parent function
 int f(int n,  vector<int> & v){
 
@@ -11,13 +16,17 @@ int f(int n,  vector<int> & v){
     return n;
 
   // choice
+
   return v[n] = f(v[n], v);
 }
 
 int main(){
+  ios::sync_with_stdio(false);cin.tie(0);
+  
   vector<pair<int, pair<int, int>>> inputs;
 
-  int n, e, cost;
+  int n, e;
+  long long cost;
   cin >> n >> e;
   cost = 0;
 
@@ -26,14 +35,16 @@ int main(){
     cin >> a >> b >> w;
     inputs.push_back({w, {a, b}});
   }
+  
+  //descending order
+  sort(inputs.begin(), inputs.end(), greater<pair<int, pair<int, int>>>());
 
-  sort(inputs.begin(), inputs.end());
+  vector<int> parent (n+1);
 
-  vector<int> parent (n);
-
-  for (int i = 0; i < n; i++){
+  for (int i = 1; i <= n; i++){
     parent[i] = i;
   }
+
 
   for (int i = 0; i < e; i++)
   {
@@ -50,5 +61,5 @@ int main(){
     }
   }
 
-  cout << cost;
+  cout << cost - (n-1);
 }

@@ -35,8 +35,8 @@ void f(int row, int col, vector <vector <char>> &v){
 int main(){
 
 
-  
-  cin >> rowMax >> colMax;
+  cin.tie(NULL)->sync_with_stdio(false);
+  cin >> rowMax >> colMax;  
 
   
   vector<vector <char>> v(rowMax, vector<char>(colMax));
