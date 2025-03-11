@@ -24,7 +24,7 @@ int main(){
 
   // dijksttra
 
-  pq.push({0, 0});
+  pq.push({0, 0}); // starting node
   dst[0] = 0;
 
   while (!pq.empty()){
@@ -39,7 +39,7 @@ int main(){
     for (it = adj[v].begin(); it != adj[v].end(); it++){
       // if less than, add
       if ( w + it->second < dst[it->first]){
-        pq.push({w + it->second, it->first});
+        pq.push({w + it->second, it->first}); // all distances here are in relation to the starting node 
         dst[it->first] = w + it->second;
       }
 

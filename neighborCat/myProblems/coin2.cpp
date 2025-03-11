@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+const int mod = 1e9 + 7;
 
 vector<int> coins = {1,2,5};
 
@@ -15,10 +16,11 @@ int f(int amount,int index, vector <vector <int>> &mem){
   if(mem[amount][index] != -1) return mem[amount][index];
 
   int sum = 0;
+  
   for (int i = index; i < coins.size(); i++){
     int temp = f(amount - coins[i], i, mem);
-    sum += temp;
-    mem[amount][i] = temp; 
+    sum += temp % mod;
+    mem[amount][i] = temp % mod; 
   }
 
   return sum;
@@ -33,7 +35,7 @@ int main(){
 
   int x = f(n,0,mem);
 
-  cout << x;  
+  cout << x % mod;  
 
   return 0;
 }

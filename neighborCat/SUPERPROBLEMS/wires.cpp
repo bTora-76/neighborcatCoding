@@ -30,6 +30,7 @@ int main(){
   sort(inputs.begin(), inputs.end());
 
   vector<int> parent (n);
+  vector <int> edgesR;
 
   for (int i = 0; i < n; i++){
     parent[i] = i;
@@ -47,8 +48,19 @@ int main(){
     if (A!=B){
       parent[A] = B; // เอา root มาเชื่อมกัน
       cost += w;
+      edgesR.push_back(w);
     }
   }
 
-  cout << cost;
+  cout << cost << '\n';
+  for (int i = 0; i < n; i++){
+    cout << parent[i] << " ";
+  }
+  cout << '\n';
+  for (int i = 0; i < n - 1; i++){
+    cout << edgesR[i] << " ";
+  }
+
+
+
 }
