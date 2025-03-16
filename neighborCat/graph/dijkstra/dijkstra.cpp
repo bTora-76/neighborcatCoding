@@ -42,7 +42,6 @@ int main(){
         pq.push({w + it->second, it->first}); // all distances here are in relation to the starting node 
         dst[it->first] = w + it->second;
       }
-
     }
   }
 
