@@ -20,6 +20,8 @@ void show(Node *ptr){
         cout << ptr->id << " ";
         ptr = ptr->next;
     }
+
+    cout << '\n';
 }
 
 
