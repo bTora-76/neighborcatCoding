@@ -84,13 +84,16 @@ int main(){
     int num;
 
     Node *temp;
+
+    print(head);
+
     
-    for (int i = 0; i < n; i++){
-        cin >> num;
-        temp = new Node(num);
-        ptr->next = temp; // connect nodes
-        ptr = temp; // move ptr
-    }
+    // for (int i = 0; i < n; i++){
+    //     cin >> num;
+    //     temp = new Node(num);
+    //     ptr->next = temp; // connect nodes
+    //     ptr = temp; // move ptr
+    // }
 
     // Node *temp;
     // temp = new Node(5);
