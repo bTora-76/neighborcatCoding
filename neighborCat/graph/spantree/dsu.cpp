@@ -2,9 +2,11 @@
 #include <vector>
 using namespace std;
 
+// find parent
 int f(int n,  vector<int> & v){
 
   // basecase 
+  // if the value of is equal to its index, then it is parent
   if (v[n] == n)
     return n;
 
