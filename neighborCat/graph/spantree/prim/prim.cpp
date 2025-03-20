@@ -10,7 +10,7 @@ int getminIn(vector <int> &keys, vector <bool> &mstSet){
   for (int i = 0; i < keys.size(); i++){
     
     // กันเป็น 0 ตลอดไป
-    else if (minIndex == -1 || keys[i] < keys[minIndex]){
+    if (!mstSet[i] && (minIndex == -1 || keys[i] < keys[minIndex])){
       minIndex = i;
     }
   }
