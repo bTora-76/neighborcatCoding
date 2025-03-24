@@ -1,61 +1,80 @@
-#include <iostream>
-#include <vector>
-using namespace std;
+    #include <iostream>
+    #include <vector>
+    using namespace std;
 
-int d, poison;
+    int d, poison;
 
-int f(int n, int p, vector<int>&v){
-    // base case 
-    if(n < 0) return 0;
-    if(n == 0) return 0; // we dont do anything at 0 because we add v[0] after the call 
+    vector<vector<int>> mem;
 
-    // use backtracking
 
-    int maxCheese = -9999;
+    int f(int n, int p, vector<int>&v){
 
-    // first layer
-    if (n == d){
-        for (int i = n-1; i >= 0; i--){
-            // ยังไม่ใช้ยาพิษ
-            maxCheese = max(maxCheese, f(i, p, v) + v[i]); //poison is 0 for sure
+        
+
+        int maxCheese = 0;
+
+        if(n < 0) return 0;
+        if (mem[n][p] != -1) return mem[n][p];
+
+        // move with using poison
+        if (p > 0){
+            // call next day.
+            if(n >= 1 && mem[n-1][p-1] != -1){
+                maxCheese = max(mem[n-1][p-1], maxCheese);
+            }
+            else {
+                maxCheese = max(maxCheese, f(n-1, p-1, v));
+            }
+            
+
+            // call the other days without using poison
+            for (int i = n-2; i >=0; i--){
+
+                if(mem[i][p] != -1 ) maxCheese = max(maxCheese,mem[i][p] ); 
+                else {
+                    maxCheese = max(maxCheese, f(i,p, v));
+                }
+                
+            }        
         }
-    }
 
-    else {
-        // ถ้ามียาพิษจะลองเรียกตัวที่อยู่ติดได้
-        if(p >= 1){
-            --p;
-            maxCheese = max (maxCheese, f(n-1, p, v) + v[n-1]);
-            ++p;
+        else {
+            for (int i = n-2; i >=0; i--){
+                if(mem[i][p] != -1 )maxCheese = max(maxCheese, mem[i][p]); 
+                else {
+                    maxCheese = max(maxCheese, f(i,p, v));
+                }
+                
+            } 
         }
-        // สามารถ loop ที่เหลทอได้อีกด้วย
-        for (int i = n-2; i >= 0; i--){
-            maxCheese = max (maxCheese, f(i, p, v) + v[i]);
-        }        
+        return mem[n][p] = maxCheese + v[n];
+
+        
+    
     }
 
 
-    return maxCheese;
+    int main(){
 
-    
-    return 0;
-}
+        
+        cin >> d >> poison;
 
+        mem.resize(d,vector<int> (poison+1, -1));
 
-int main(){
+        vector <int> v(d);
 
-    
-    cin >> d >> poison;
+        for (int i = 0; i < d; i++){    
+            cin >> v[i];
+        }
 
-    vector <int> v(d+1);
+        int s = 0;
+        
+        // start from space outside 1 slot
+        for (int i = 0; i < d; i++){
+            s = max(s, f(i,poison,v));
+        }
+        
+        cout << s;
 
-    for (int i = 0; i < d; i++){
-        cin >> v[i];
+        return 0;
     }
-
-    // start from space outside 1 slot
-    cout << f(d, poison, v);
-    
-
-    return 0;
-}
