@@ -2,15 +2,15 @@
 #include <vector>
 using namespace std;
 
-vector <vector <int >>mem;
+vector <vector <long long >>mem;
 
-int c = 0;
+long long c = 0;
 
-int f(int i, int j, vector<vector<int>> &v){
+long long f(long long i, long long j, vector<vector<long long>> &v){
     ++c;
     // cout << i << " " << j << '\n';
     //basecase 
-    if (i <  -1 || j < -1) return 0;
+    if (i == -1 || j == -1) return 0;
     
     if(mem[i][j] != -1 ) return mem[i][j];
 
@@ -27,15 +27,15 @@ int f(int i, int j, vector<vector<int>> &v){
 
 int main(){
 
-    int m,n;
+    long long m,n;
     cin >> m >> n;
 
-    mem.resize(m, vector<int>(n,-1));
+    mem.resize(m, vector<long long>(n,-1));
 
-    vector <vector <int>> v(m, vector<int>(n));
+    vector <vector <long long>> v(m, vector<long long>(n));
 
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
+    for (long long i = 0; i < m; i++){
+        for (long long j = 0; j < n; j++){
             cin >> v[i][j];
         }
     }
@@ -43,8 +43,8 @@ int main(){
     cout << f(m-1,n-1,v) << '\n'; // 0 index
     cout << c - 1 << '\n';
 
-    for (int i = 0; i < m; i++){
-        for (int j = 0; j < n; j++){
+    for (long long i = 0; i < m; i++){
+        for (long long j = 0; j < n; j++){
             cout << mem[i][j] << " ";
         }
         cout << '\n';
